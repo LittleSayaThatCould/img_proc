@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Image Processor</string>
+
+    <string name="rotate_text">Rotate</string>
+    <string name="invert_colors_text">Invert colors</string>
+    <string name="mirror_image_text">Mirror Image</string>
 </resources>

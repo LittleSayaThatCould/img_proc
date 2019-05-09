@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9"/>
+
+    <ImageView
+        android:id="@+id/frag_img_proc_main_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/top_margins"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="@id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/frag_img_proc_btn_container"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/frag_img_proc_btn_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/top_margins"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/frag_img_proc_main_img"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/guideline">
+
+        <Button
+            android:id="@+id/frag_img_proc_rotate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/inner_margins"
+            android:text="@string/rotate_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/frag_img_proc_invert"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="Rotate"/>
+
+        <Button
+            android:id="@+id/frag_img_proc_invert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/inner_margins"
+            android:text="@string/invert_colors_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_img_proc_rotate"
+            app:layout_constraintBottom_toTopOf="@id/frag_img_proc_mirror"
+            tools:text="Invert colors"/>
+
+        <Button
+            android:id="@+id/frag_img_proc_mirror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/inner_margins"
+            android:text="@string/mirror_image_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/frag_img_proc_invert"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:text="Mirror image"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/frag_img_proc_results"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:layout_margin="@dimen/top_margins"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,3 +25,11 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+project.ext {
+    minSdkVersion = 19
+    rxJavaVersion = "2.2.2"
+    rxAndroidVersion = "2.1.0"
+    rxKotlinVerrsion = "2.2.0"
+    daggerVersion = "2.16"
+}
