@@ -1,6 +1,7 @@
-package com.valer.sergey.imageprocessor.presentation.presenter
+package com.valer.sergey.imageprocessor.presentation.presenters
 
-import com.valer.sergey.imageprocessor.presentation.contract.MainContract
+
+import com.valer.sergey.imageprocessor.presentation.contracts.MainContract
 
 class MainPresenter: MainContract.Presenter {
 

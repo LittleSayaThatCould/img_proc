@@ -1,4 +1,4 @@
-package com.valer.sergey.imageprocessor.presentation.contract
+package com.valer.sergey.imageprocessor.presentation.contracts
 
 import com.valer.sergey.imageprocessor.presentation.base.BaseContract
 

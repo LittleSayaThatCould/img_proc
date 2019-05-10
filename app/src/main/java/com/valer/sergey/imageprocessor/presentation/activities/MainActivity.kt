@@ -1,11 +1,11 @@
-package com.valer.sergey.imageprocessor.presentation.activity
+package com.valer.sergey.imageprocessor.presentation.activities
 
 import android.os.Bundle
 import com.valer.sergey.imageprocessor.R
 import com.valer.sergey.imageprocessor.app.App
 import com.valer.sergey.imageprocessor.presentation.base.BaseActivity
-import com.valer.sergey.imageprocessor.presentation.contract.MainContract
-import com.valer.sergey.imageprocessor.presentation.fragment.ImageProcessingFragment
+import com.valer.sergey.imageprocessor.presentation.contracts.MainContract
+import com.valer.sergey.imageprocessor.presentation.fragments.ImageProcessingFragment
 import javax.inject.Inject
 
 

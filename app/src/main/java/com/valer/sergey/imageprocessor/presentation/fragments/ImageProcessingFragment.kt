@@ -1,16 +1,15 @@
-package com.valer.sergey.imageprocessor.presentation.fragment
+package com.valer.sergey.imageprocessor.presentation.fragments
 
 import com.valer.sergey.imageprocessor.R
 import com.valer.sergey.imageprocessor.app.App
 import com.valer.sergey.imageprocessor.presentation.base.BaseFragment
-import com.valer.sergey.imageprocessor.presentation.contract.ImageProcessingContract
+import com.valer.sergey.imageprocessor.presentation.contracts.ImageProcessingContract
 import kotlinx.android.synthetic.main.frag_img_proc.*
 import javax.inject.Inject
 
 
 class ImageProcessingFragment : BaseFragment(), ImageProcessingContract.View {
 
-    private var value:Int = 0
     @Inject
     lateinit var presenter: ImageProcessingContract.Presenter
 
@@ -31,6 +30,6 @@ class ImageProcessingFragment : BaseFragment(), ImageProcessingContract.View {
     }
 
     override fun onDestroyInit() {
-
+        presenter.unSubscribe()
     }
 }
