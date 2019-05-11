@@ -9,7 +9,7 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         components.appComponent = DaggerAppComponent.builder()
-                .appModule(AppModule()).build()
+                .appModule(AppModule(this)).build()
         components.appComponent.inject(this)
     }
 

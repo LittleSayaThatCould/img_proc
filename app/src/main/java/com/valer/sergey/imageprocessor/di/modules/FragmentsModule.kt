@@ -12,4 +12,5 @@ class FragmentsModule {
     @AppScope
     @Provides
     fun provideImageProcessingPresenter(): ImageProcessingContract.Presenter = ImageProcessingPresenter()
+
 }

@@ -4,4 +4,7 @@
     <string name="rotate_text">Rotate</string>
     <string name="invert_colors_text">Invert colors</string>
     <string name="mirror_image_text">Mirror Image</string>
+
+    <string name="error_text">Something went wrong</string>
+    <string name="choose_pic">Choose a picture</string>
 </resources>
