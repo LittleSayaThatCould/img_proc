@@ -43,11 +43,6 @@ class ImageProcessingPresenter: BasePresenter<ImageProcessingContract.View>(), I
         )
     }
 
-    override fun unSubscribe() {
-
-        super.unSubscribe()
-    }
-
     init {
         App.components.appComponent.inject(this)
         processingState = ImageProcessingState()
@@ -63,7 +58,7 @@ class ImageProcessingPresenter: BasePresenter<ImageProcessingContract.View>(), I
         if (address.isNotEmpty()) {
             imageProcessingRepository.loadImage(address)
                     .doOnSubscribe { view.showProgress(true) }
-//                    .doFinally { view.showProgress(false) }
+                    .doFinally { view.showProgress(false) }
                     .flatMap {
                         val bitmap = BitmapFactory.decodeStream(it.byteStream())
                         Single.just(bitmap.createScaledBitmap())

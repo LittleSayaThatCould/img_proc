@@ -10,9 +10,7 @@ import com.valer.sergey.imageprocessor.app.App
 import com.valer.sergey.imageprocessor.data.ImagePickerState
 import com.valer.sergey.imageprocessor.data.bundle
 import com.valer.sergey.imageprocessor.presentation.base.BaseFragment
-import com.valer.sergey.imageprocessor.presentation.common.IMAGE_PICKER_TAG
-import com.valer.sergey.imageprocessor.presentation.common.ImagePickerDialogFragment
-import com.valer.sergey.imageprocessor.presentation.common.PickerListener
+import com.valer.sergey.imageprocessor.presentation.common.*
 import com.valer.sergey.imageprocessor.presentation.contracts.ImageProcessingContract
 import com.valer.sergey.imageprocessor.presentation.fragments.adapters.ProcessingAdapter
 import com.valer.sergey.imageprocessor.utils.RequestImageManager
@@ -131,7 +129,8 @@ class ImageProcessingFragment : BaseFragment(), ImageProcessingContract.View {
     }
 
     override fun showProgress(isInProgress: Boolean) {
-
+        val dialog = childFragmentManager.findFragmentByTag(PROGRESS_DIALOG_TAG) as? ProgressDialog ?: ProgressDialog().apply { /*isCancelable = false*/ }
+        if (isInProgress) dialog.show(childFragmentManager, PROGRESS_DIALOG_TAG) else dialog.dismiss()
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
