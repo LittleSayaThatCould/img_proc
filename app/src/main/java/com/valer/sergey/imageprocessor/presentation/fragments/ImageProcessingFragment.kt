@@ -44,11 +44,9 @@ class ImageProcessingFragment : BaseFragment(), ImageProcessingContract.View {
     }
 
     private fun initProcessedItemsView() {
-        val mutableList = mutableListOf<Bitmap>()
-        mutableList.addAll(presenter.processingState.processedItems)
         frag_img_proc_results.apply {
             adapter = ProcessingAdapter(
-                    mutableList,
+                    presenter.processingState.processedItems,
                     { presenter.currentBitmap = it },
                     { presenter.processingState.processedItems.removeAt(it)}
             )
@@ -66,15 +64,16 @@ class ImageProcessingFragment : BaseFragment(), ImageProcessingContract.View {
             frag_img_proc_main_choose_pic.visibility = View.VISIBLE        }
     }
 
-    override fun addProcessedItem(bitmap: Bitmap) {
+    override fun addProcessedItem(item: Pair<Int, Bitmap?>) {
         val adapter = frag_img_proc_results.adapter as? ProcessingAdapter
         adapter?.let{
-            it.addItem(bitmap)
-            frag_img_proc_results.smoothScrollToPosition(it.items.lastIndex)
+            it.notifyDataSetChanged()
+//            it.notifyItemInserted(it.items.lastIndex)
+//            frag_img_proc_results.smoothScrollToPosition(it.items.lastIndex)
         }
     }
 
-    override fun showProcessedItems(list: MutableList<Bitmap>) {
+    override fun showProcessedItems(list: MutableList<Pair<Int, Bitmap?>>) {
         if (list.isNotEmpty()) {
             val adapter = frag_img_proc_results.adapter as? ProcessingAdapter
             adapter?.items = list

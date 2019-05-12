@@ -13,14 +13,17 @@ import com.valer.sergey.imageprocessor.extensions.toBlackAndWhite
 import com.valer.sergey.imageprocessor.repository.ImageProcessingRepository
 import com.valer.sergey.imageprocessor.presentation.base.BasePresenter
 import com.valer.sergey.imageprocessor.presentation.contracts.ImageProcessingContract
+import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.rxkotlin.Observables
 import io.reactivex.rxkotlin.addTo
+import java.util.*
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ImageProcessingPresenter: BasePresenter<ImageProcessingContract.View>(), ImageProcessingContract.Presenter {
 
     private lateinit var view: ImageProcessingContract.View
-
 
     override var processingState: ImageProcessingState = ImageProcessingState()
 
@@ -90,7 +93,27 @@ class ImageProcessingPresenter: BasePresenter<ImageProcessingContract.View>(), I
     }
 
     private fun updateList(bitmap: Bitmap) {
-        processingState.processedItems.add(bitmap)
-        view.addProcessedItem(bitmap)
+        var newItem: Pair<Int, Bitmap?> = 100 to bitmap
+        processingState.processedItems.add(newItem)
+        var item2 = processingState.processedItems.lastIndex
+        val random = Random().nextInt(25) + 5
+        Log.w("meh", "random = " + random)
+        val range = Observable.range(1, random)
+        val interval = Observable.interval(1, TimeUnit.SECONDS)
+        Observables.zip(
+                range,
+                interval
+        ) { range, _ ->
+            val multiplier = (100 / random) * range
+            Log.w("meh", "func " + range)
+            if (range == random) 100 else multiplier
+        }.subscribe({
+                    Log.w("meh", "func final" + it.toString())
+
+                    view.addProcessedItem(newItem)
+                }, {}).addTo(binds)
+
+
+
     }
 }

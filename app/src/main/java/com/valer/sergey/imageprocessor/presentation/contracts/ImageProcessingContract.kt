@@ -11,8 +11,8 @@ class ImageProcessingContract {
         fun isDialogShowing(isShowing: Boolean)
         fun showErrorLoading()
         fun showProgress(isInProgress: Boolean)
-        fun showProcessedItems(list: MutableList<Bitmap>)
-        fun addProcessedItem(bitmap: Bitmap)
+        fun showProcessedItems(list: MutableList<Pair<Int, Bitmap?>>)
+        fun addProcessedItem(item: Pair<Int, Bitmap?>)
     }
 
     interface Presenter: BaseContract.Presenter<ImageProcessingContract.View> {

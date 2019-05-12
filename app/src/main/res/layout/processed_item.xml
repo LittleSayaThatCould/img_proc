@@ -29,5 +29,16 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/processed_item_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:minHeight="@dimen/progress_item_min_height"
+        android:layout_marginTop="@dimen/inner_margins"
+        android:layout_marginBottom="@dimen/inner_margins"
+        style="@style/Base.Widget.AppCompat.ProgressBar.Horizontal"
+        android:progress="20" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
