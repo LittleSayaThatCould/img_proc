@@ -5,6 +5,6 @@ import android.graphics.Bitmap
 data class ImageProcessingState(
         var currentBitmap: Bitmap? = null,
         val processedItems: MutableList<Bitmap> = mutableListOf(),
-        var loadAddress: String = "https://www.gipsyteam.ru/upload/Titleimage/fixed160x120/5/5/5597.jpg",
+        var loadAddress: String = "",
         var scrolledPosition: Int = 0
 )

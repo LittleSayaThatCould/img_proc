@@ -13,7 +13,7 @@ class ImageProcessingRepositoryImpl : ImageProcessingRepository {
     init {
         val retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .baseUrl("https://www.gipsyteam.ru/")
+                .baseUrl("https://www.test.ru")
                 .build()
         imageService = retrofit.create(ImageService::class.java)
     }
