@@ -6,7 +6,6 @@ import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
@@ -37,7 +36,7 @@ class ImagePickerDialogFragment : DialogFragment() {
             dismiss()
         }
         dialogView.apply {
-            image_picker_address.setText(pickerState.currentAddress)
+            image_picker_address.setText(/*pickerState.currentAddress()*/"https://www.gipsyteam.ru/upload/Titleimage/fixed160x120/5/5/5597.jpg")
             image_picker_address.setSelection(pickerState.currentAddress.length)
 
             image_picker_address.addTextChangedListener(object : TextWatcher{
@@ -70,7 +69,6 @@ class ImagePickerDialogFragment : DialogFragment() {
                     Toast.makeText(this@ImagePickerDialogFragment.context, R.string.error_url_empty, Toast.LENGTH_SHORT).show()
                 }
             }
-
         }
 
         alertDialog.apply {

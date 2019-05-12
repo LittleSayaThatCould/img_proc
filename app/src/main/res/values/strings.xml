@@ -13,5 +13,8 @@
     <string name="input_url">Input URL</string>
     <string name="req_local">Request local image</string>
     <string name="req_camera">image_picker_camera</string>
-    <string name="req_url_ok">Ok</string>
+    <string name="req_url_ok">OK</string>
+
+    <string name="popup_use">Use as current</string>
+    <string name="popup_delete">Delete</string>
 </resources>

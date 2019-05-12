@@ -2,7 +2,6 @@ package com.valer.sergey.imageprocessor.utils
 
 import android.Manifest
 import android.app.Activity
-import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -14,6 +13,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.valer.sergey.imageprocessor.R
+import com.valer.sergey.imageprocessor.extensions.createScaledBitmap
 import com.valer.sergey.imageprocessor.presentation.base.BaseFragment
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -133,6 +133,7 @@ class RequestImageManager (
                 }
                 if (imageStream != null) {
                     Single.defer { Single.just(BitmapFactory.decodeStream(imageStream))}
+                            .flatMap { Single.just(it.createScaledBitmap()) }
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
@@ -146,6 +147,7 @@ class RequestImageManager (
             }
             resultCode == Activity.RESULT_OK && requestCode == REQUEST_IMAGE_CAMERA -> {
                 Single.defer { Single.just(BitmapFactory.decodeFile(currentPhotoPath)) }
+                        .flatMap { Single.just(it.createScaledBitmap()) }
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
