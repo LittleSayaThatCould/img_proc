@@ -6,5 +6,12 @@
     <string name="mirror_image_text">Mirror Image</string>
 
     <string name="error_text">Something went wrong</string>
+    <string name="error_load_text">Failed to load image</string>
+    <string name="error_url_empty">URL is empty</string>
     <string name="choose_pic">Choose a picture</string>
+
+    <string name="input_url">Input URL</string>
+    <string name="req_local">Request local image</string>
+    <string name="req_camera">image_picker_camera</string>
+    <string name="req_url_ok">Ok</string>
 </resources>

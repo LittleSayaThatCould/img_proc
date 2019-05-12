@@ -1,14 +1,22 @@
 package com.valer.sergey.imageprocessor.presentation.contracts
 
 import android.graphics.Bitmap
+import com.valer.sergey.imageprocessor.data.ImagePickerState
 import com.valer.sergey.imageprocessor.presentation.base.BaseContract
 
 class ImageProcessingContract {
-    interface View: BaseContract.View
+    interface View: BaseContract.View {
+        fun setImage(bitmap: Bitmap)
+        fun isDialogShowing(isShowing: Boolean)
+        fun showErrorLoading()
+    }
 
     interface Presenter: BaseContract.Presenter<ImageProcessingContract.View> {
-        fun rotate(bitmap: Bitmap): Bitmap
-        fun mirrorImage(bitmap: Bitmap): Bitmap
-        fun invertColors(bitmap: Bitmap): Bitmap
+        fun rotate()
+        fun mirrorImage()
+        fun invertColors()
+        fun loadImage(address: String)
+        var curentBitmap: Bitmap?
+        var dialogState: ImagePickerState
     }
 }

@@ -2,6 +2,7 @@ package com.valer.sergey.imageprocessor.utils
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -22,8 +23,8 @@ import java.io.IOException
 import java.io.InputStream
 
 class RequestImageManager (
-        private val fragment: BaseFragment,
-        private val onImageAction: (Bitmap) -> Unit) {
+        private val fragment: BaseFragment
+) {
 
     companion object {
         const val REQUEST_IMAGE_CAMERA = 1001
@@ -38,14 +39,17 @@ class RequestImageManager (
     }
 
     private lateinit var currentPhotoPath: String
+    private lateinit var onLocalImageAction: (Bitmap) -> Unit
+    private lateinit var onCameraImageAction: (Bitmap) -> Unit
 
-    fun requestFromGallery() {
+    fun requestFromGallery(localImageAction: (Bitmap) -> Unit) {
+        onLocalImageAction = localImageAction
         fragment.context?.let {
             val permissionExternalStorage = ContextCompat.checkSelfPermission(it, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
             if (!permissionExternalStorage) {
                 fragment.requestPermissions(arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), PERMISSIONS_REQUEST_STORAGE)
             } else {
-                val intent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                val intent = Intent(Intent.ACTION_PICK).apply {
                     putExtra(Intent.EXTRA_LOCAL_ONLY, true)
                     addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                     type = INTENT_IMAGE_TYPE
@@ -56,7 +60,8 @@ class RequestImageManager (
         }
     }
 
-    fun requestFromCamera() {
+    fun requestFromCamera(cameraAction: (Bitmap) -> Unit) {
+        onCameraImageAction = cameraAction
         fragment.context?.let {
             val permissionCamera = ContextCompat.checkSelfPermission(it, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
             if (!permissionCamera) {
@@ -105,14 +110,14 @@ class RequestImageManager (
             PERMISSIONS_REQUEST_CAMERA -> {
                 fragment.context?.let {
                     val permissionCamera = ContextCompat.checkSelfPermission(it, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED
-                    if (permissionCamera) requestFromCamera()
+                    if (permissionCamera) requestFromCamera(onCameraImageAction)
                 }
 
             }
             PERMISSIONS_REQUEST_STORAGE -> {
                 fragment.context?.let {
                     val permissionExternalStorage = ContextCompat.checkSelfPermission(it, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED
-                    if (permissionExternalStorage) requestFromGallery()
+                    if (permissionExternalStorage) requestFromGallery(onLocalImageAction)
                 }
             }
         }
@@ -131,7 +136,7 @@ class RequestImageManager (
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
-                                onImageAction.invoke(it)
+                                onLocalImageAction.invoke(it)
                             }, {
                                 showErrorToast()
                             })
@@ -144,7 +149,7 @@ class RequestImageManager (
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
-                            onImageAction.invoke(it)
+                            onCameraImageAction.invoke(it)
                         }, {
                             showErrorToast()
                         })

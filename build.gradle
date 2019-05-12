@@ -32,4 +32,6 @@ project.ext {
     rxAndroidVersion = "2.1.0"
     rxKotlinVerrsion = "2.2.0"
     daggerVersion = "2.16"
+    retrofitVersion = "2.5.0"
+    ktx = "1.0.2"
 }

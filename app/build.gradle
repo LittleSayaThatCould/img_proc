@@ -29,6 +29,7 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0-alpha05'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha05'
+    implementation "androidx.core:core-ktx:$ktx"
 
     // rx
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.rxJavaVersion"
@@ -41,5 +42,9 @@ dependencies {
     implementation "com.google.dagger:dagger-android:$rootProject.ext.daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$rootProject.ext.daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.ext.daggerVersion"
+
+    // retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 }
 
