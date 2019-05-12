@@ -2,7 +2,6 @@ package com.valer.sergey.imageprocessor.presentation.presenters
 
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.util.Log
 import com.valer.sergey.imageprocessor.app.App
 import com.valer.sergey.imageprocessor.data.ImagePickerState
 import com.valer.sergey.imageprocessor.data.ImageProcessingState
@@ -31,7 +30,6 @@ class ImageProcessingPresenter: BasePresenter<ImageProcessingContract.View>(), I
         set(value) {
             field = value
             processingState.currentBitmap = field
-            Log.w("meh", "set bitmap")
             field?.let { view.setImage(it) }
         }
 
@@ -66,7 +64,7 @@ class ImageProcessingPresenter: BasePresenter<ImageProcessingContract.View>(), I
                     .subscribe({
                         currentBitmap = it
                     }, {
-                        Log.w("meh", "error stuff")
+                        view.showErrorLoading()
                     }).addTo(binds)
         }
     }

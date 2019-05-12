@@ -36,7 +36,7 @@ class ImagePickerDialogFragment : DialogFragment() {
             dismiss()
         }
         dialogView.apply {
-            image_picker_address.setText(/*pickerState.currentAddress()*/"https://www.gipsyteam.ru/upload/Titleimage/fixed160x120/5/5/5597.jpg")
+            image_picker_address.setText(pickerState.currentAddress)
             image_picker_address.setSelection(pickerState.currentAddress.length)
 
             image_picker_address.addTextChangedListener(object : TextWatcher{
